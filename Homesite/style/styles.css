@@ -1,0 +1,470 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Times New Roman', serif;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid whitesmoke;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.header__left img {
+  object-fit: contain;
+  height: 35px;
+  margin-left: 5px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__left span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.material-icons {
+  color: #212121;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Styles for the header__middle */
+.header__middle {
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+/* Styles for the input field */
+.header__middle input {
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: medium;
+  background-color: transparent;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.header__middle input::placeholder {
+  color: #212121;
+  text-align: center;
+}
+
+/* Styles for the send button */
+.header__middle button {
+  border: none;
+  background-color: transparent;
+  color: #212121;
+}
+
+.header__right {
+  display: flex;
+  padding-right: 20px;
+}
+
+.header__right span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.account-setting {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: row; /* Changed from default column to horizontal row */
+  margin: 5px;
+  max-width: 300px;
+  padding-right: 20px;
+  padding: 0 10px;
+}
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #212121;
+  font-family: 'Times New Roman', serif;
+  font-weight: 200;
+  font-size: large;
+  
+}
+
+.sidebarOption .material-icons {
+  padding: 5px;
+
+}
+.sidebar a {
+  text-decoration: none;
+  color: #212121;
+}
+
+.sidebarOption h3 {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 400;
+ 
+
+}
+
+/* Adjust the styling for active/hover states as needed */
+.sidebarOption:hover,
+.sidebarOption__active,
+.sidebarOption__active h3,
+.sidebarOption__active .material-icons,
+.sidebarOption:hover .material-icons {
+  background-color: wheat;
+  color: blue;
+  border-radius: 8px;
+  
+
+}
+
+
+/* main body */
+.main__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* email list */
+.QuestionList {
+  flex: 1;
+  margin-bottom: 50px;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+
+.Question-text {
+  flex-grow: 1;
+}
+
+.Questionbox {
+  padding: 4px;
+  border-radius: 20px;
+}
+
+.box {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 20px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.profile-image {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.profile-text {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.body p {
+  margin-bottom: 16px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.footer a {
+  color: #212121;
+  text-decoration: none;
+}
+
+/* .footer span {
+  padding-inline: 10px;
+  color: #212121;
+} */
+
+.keyword button {
+  color: #212121;
+  background-color: rgb(214, 213, 213);
+  border-radius: 5px;
+  height: 30px;
+  font-size: 15px;
+  border: none;
+  padding-inline: 10px;
+}
+
+/* drop down for keyword in form tag */
+.input-with-dropdown {
+  padding-inline-end: 150px;
+  position: relative;
+}
+
+.dropdown-header {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content .keyword-input {
+  display: block;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-arrow {
+  margin-right: 5px;
+}
+
+/* popup form */
+#popupForm {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.popupform button {
+  border: none;
+}
+
+#popupForm form {
+  width: 100%;
+}
+/* 
+
+/* Style for the combined button */
+.post-button {
+  display: flex;
+  align-items: center;
+  background-color:blue;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add some space between the text and icon */
+.post-button span {
+  margin-right: 5px;
+}
+
+/* Adjust the icon color */
+.post-button .material-icons {
+  color: #fff;
+}
+
+/* Hover effect for the button */
+.post-button:hover {
+  background-color: #f49121f8;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 20px;
+  background: #fff;
+  z-index: 1000;
+}
+
+.popup_img_content {
+  object-fit: contain;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Apply a modern style to the form */
+
+
+/* Style the label for the question input */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style the text input for the question */
+.editor input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+/* Style the file input for image upload */
+.editor input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the keyword input */
+.text-field {
+    position: relative;
+}
+
+#textInput {
+    width: calc(100% - 20px);
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the dropdown list for keyword suggestions */
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: calc(100% - 20px);
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Style the submit button */
+button.ask {
+    background-color: blue;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+button.ask:hover {
+    background-color: #f49121f8;
+
+}
+button.close {
+    background-color: blue;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+button.close:hover {
+    background-color: #f49121f8;
+}
+
+.popups {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.popups.active {
+  display: block;
+}
+
+.reportsendform {
+  width: 400px; /* Set your desired width */
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.reportsendform button[type="button"], button[type="submit"] {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.reportsendform input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}

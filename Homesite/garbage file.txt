@@ -1,0 +1,432 @@
+<?php
+
+session_start();
+
+// Check if user is not logged in, redirect to index.html
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.html");
+    exit();
+}
+
+// Database connection details
+$host = 'localhost';
+$username = 'root';
+$password = 'shivamask@lancer';
+$database = 'brainbox';
+
+// Create a database connection
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Check the connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Fetch user data from the database
+$user_id = $_SESSION['user_id'];
+$stmt = $mysqli->prepare("SELECT * FROM user WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if user exists
+if ($result->num_rows > 0) {
+    // User found, fetch data
+    $user_data = $result->fetch_assoc();
+    $username = $user_data['username'];
+    $email = $user_data['email'];
+
+       // Store user information in the session
+    $_SESSION['username'] = $username;
+    $_SESSION['email'] = $email;
+ 
+} 
+else {
+    // User not found, redirect to index.html
+    header("Location: index.html");
+    exit();
+
+
+   
+}
+?>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="style/styles.css" />
+  <link rel="stylesheet" href="style/DiscussionInfo.css">
+  <link rel="stylesheet" href="style/toggel.css">
+  <script></script>
+
+  <title>BrainBox- Discussion-Page</title>
+
+  <style>
+/* Add this style in your style tag or CSS file */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+</style>
+
+
+
+
+</head>
+
+<body>
+  <!-- Header Starts -->
+  <div class="header">
+    <div class="header__left">
+      <span class="material-icons" id="menuIcon">menu</span>
+      <img src="company.png" alt="" />
+    </div>
+
+    <div class="header__middle">
+      <span class="material-icons"> search </span>
+      <input type="text" placeholder="Search Here!" />
+      <button class="material-icons"> send</button>
+    </div>
+    <span class="material-icons" id="openPopup" style="cursor:pointer;" >record_voice_over</span>
+
+
+    <div class="header__right">
+
+      <span class="material-icons"> notifications </span>
+            
+     
+        <img src="me.jpg" alt="Profile Picture" class="account-setting" onclick="toggleDropdown()">
+       
+    
+  
+    </div>
+  </div>
+  <!-- Header Ends -->
+
+  <!-- Main Body Starts -->
+  <div class="main__body">
+  <!-- Sidebar Starts -->
+<div class="sidebar">
+
+  <a href="index.php">
+  <div class="sidebarOption ">
+    <span class="material-icons">home</span>
+    <h3>Home</h3>
+  </div>
+</a>
+  <a href="starred.php">
+    <div class="sidebarOption">
+      <span class="material-icons">star</span>
+      <h3>Starred</h3>
+    </div>
+  </a>
+
+  <a href="sent.php">
+  <div class="sidebarOption">
+    <span class="material-icons">near_me</span>
+    <h3>Sent</h3>
+  </div>
+</a>
+
+<a href="Discussion.php">
+  <div class="sidebarOption sidebarOption__active">
+    <span class="material-icons">label_important</span>
+    <h3>Discussion</h3>
+  </div>
+  </a>
+
+  <a href="snapshot.php">
+    <div class="sidebarOption ">
+      <span class="material-icons">photo</span>
+      <h3>Snapshot</h3>
+    </div>
+    </a>
+
+  <a href="profile.php">
+  <div class="sidebarOption">
+    <span class="material-icons">person</span>
+    <h3>Profile</h3>
+  </div>
+  </a>
+
+  
+
+<a href="#">
+  <div class="sidebarOption">
+    <span class="material-icons">exit_to_app
+    </span>
+    <h3>Logout</h3>
+  </div>
+  </a>
+</div>
+<!-- Sidebar Ends -->
+
+<div id="popupForm" class="popupformss">
+<form action="ServerSend/Discussionsend.php" method="post">
+    <label for="fname">Add Discussion</label>
+    <input type="text" placeholder="Discussion Name" name="Discussion_name" required>
+    <input type="text" placeholder="Discussion Admin : <?php echo"$username";?>" name="Admin_id" readonly >
+    
+
+
+
+    
+    <button type="submit" >submit</button>
+</form>
+
+
+</div>
+
+<script>
+    document.getElementById('openPopup').addEventListener('click', function () {
+        var popup = document.getElementById('popupForm');
+        popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
+
+       
+    });
+
+</script>
+<div class="QuestionList">
+
+        <?php
+        $stmt = $mysqli->prepare("SELECT discussion_id,discussion_admin_id, discussion_name, discussion_date FROM discussion ");
+        $stmt->execute();
+        $result = $stmt->get_result();
+       
+        if ($result->num_rows > 0) :
+            while ($row = $result->fetch_assoc()) :
+                $user_id = $row["discussion_admin_id"];
+         $discussion_id=$row["discussion_id"];
+
+        
+                // Fetch username from user table
+                $userQuery = $mysqli->prepare("SELECT username FROM user WHERE user_id = ?");
+                $userQuery->bind_param("i", $user_id);
+                $userQuery->execute();
+                $userResult = $userQuery->get_result();
+        
+                if ($userResult->num_rows > 0) {
+                    $userRow = $userResult->fetch_assoc();
+                    $Discussion_admin_name = $userRow["username"];
+                } else {
+                    $Discussion_admin_name = "Unknown User";
+                }
+                ?>
+        
+                <div class="box">
+                    <div class="profile-container">
+                        <div class="profile-text">
+                            <div>
+                                <h3><?= $Discussion_admin_name ?></h3>
+                                <div>
+                                    <span style ="color:green;">Discussion Admin</span>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="menu-container">
+    <span class="material-icons ellipsis-icon" onclick="toggleDropdown('DropdownContainer_<?php echo $discussion_id ;?>')">more_vert</span>
+    <div class="dropdown-menu" id="DropdownContainer_<?php echo $discussion_id; ?>">
+        <a href="#"><span class="material-icons">report</span> Report</a>
+        <a href="#"><span class="material-icons">delete</span> Delete</a>
+    </div>
+</div>
+                    </div><!-- Add this script at the end of your HTML body or in a script file -->
+<script>
+function toggleDropdown(dropdownId) {
+    var dropdown = document.getElementById(dropdownId);
+
+    // Toggle the visibility of the dropdown
+    if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+    } else {
+        dropdown.style.display = 'block';
+    }
+
+    // Close other open dropdowns
+    var allDropdowns = document.querySelectorAll('.dropdown-menu');
+    for (var i = 0; i < allDropdowns.length; i++) {
+        if (allDropdowns[i].id !== dropdownId) {
+            allDropdowns[i].style.display = 'none';
+        }
+    }
+}
+
+// Close dropdown when clicking outside of it
+document.addEventListener('click', function(event) {
+    var dropdowns = document.querySelectorAll('.dropdown-menu');
+    for (var i = 0; i < dropdowns.length; i++) {
+        if (!event.target.matches('.ellipsis-icon') && !event.target.matches('.dropdown-menu')) {
+            dropdowns[i].style.display = 'none';
+        }
+    }
+});
+</script>
+<div class="body" onclick="popupTrigger('<?php echo $row['discussion_id']; ?>')" style="cursor:pointer;">
+    <p><?= $row["discussion_name"] ?></p>
+</div>
+
+                    <div class="footer">
+                        <span class="date" style="color: #212121;"><?= $row["discussion_date"] ?></span>
+                    </div>
+                </div>
+        
+            <?php
+            endwhile;
+        else :
+            echo "<div>No discussions available</div>";
+        endif;
+        ?>
+        
+        </div>
+        
+        
+        <script>
+    function popupTrigger(discussionId) {
+        // Assuming sendDiscussionIdToServer is asynchronous
+        sendDiscussionIdToServer(discussionId);
+
+        var body1 = document.querySelector('.body1');
+        if (body1) {
+            body1.style.display = (body1.style.display === 'none' || body1.style.display === '') ? 'block' : 'none';
+        } else {
+            console.error('Element with class "body1" not found.');
+        }
+    }
+
+    function closePopup() {
+        var body1 = document.querySelector('.body1');
+        if (body1) {
+            body1.style.display = 'none';
+        } else {
+            console.error('Element with class "body1" not found.');
+        }
+    }
+</script>
+<script src="Javascript/DiscussionAjax.js"></script>
+<?php
+// Retrieve pass_id from the AJAX request
+$pass_id = isset($_POST['discussion_id']) ? $_POST['discussion_id'] : null;
+?>
+
+<div class="body1">
+    <div class="right-container">
+        <div class="header1">
+            <div class="heading-text">
+                <h1>Sample Discussion</h1>
+            </div>
+            <span class="material-icons" onclick="closePopup()" style="cursor:pointer; margin-right:5px;">close</span>
+        </div>
+        <div class="chat-container">
+            <div class="message-box">
+                <p>
+                    <b style="background:wheat;">Sample User</b><br><br>
+                    This is a sample message.<br>
+                    <span>Sample Time</span>
+                </p>
+            </div>
+        </div>
+        <div class="chatbox-input">
+            <input type="text" placeholder="Type a message">
+            <i class="material-icons">send</i>
+        </div>
+    </div>
+</div>
+
+<!-- script for dropdown -->
+<!-- Add this script at the end of your HTML body or in a script file -->
+
+
+</body>
+
+</html>
+<?php 
+// Close the connection
+$stmt->close();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/BrainBox/ShivamBrainBox/index.html");
+    exit();
+}
+
+// Database connection details
+$host = 'localhost';
+$username = 'root';
+$password = 'shivamask@lancer';
+$database = 'brainbox';
+
+// Create a database connection
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Check the connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Fetch user data from the session
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+// Get data from the form
+$discussionName = $_POST['Discussion_name'];
+$adminId = $user_id;
+
+// Get the current date
+$discussionDate = date("Y-m-d"); // Format: YYYY-MM-DD
+
+// Insert data into the discussion table
+$stmt = $mysqli->prepare("INSERT INTO discussion (discussion_name, discussion_admin_id, discussion_date) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $discussionName, $adminId, $discussionDate);
+$stmt->execute();
+
+// Close the connection
+$stmt->close();
+
+// Redirect back to the Discussion.php or any other page
+            header("Location: /BrainBox/Website/Homesite/Discussion.php");
+           
+exit();
+?>

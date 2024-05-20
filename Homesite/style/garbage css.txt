@@ -1,0 +1,586 @@
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+/* Header */
+.header__left img {
+  object-fit: contain;
+  height: 35px;
+  margin-left: 5px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__left span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.header__middle {
+
+  display: flex;
+  flex: 0.7;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.material-icons {
+  color: gray;
+  background-color: transparent;
+}
+
+.header__middle input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  font-size: medium;
+  background-color: transparent;
+}
+.header__middle button{
+  border: none;
+  background-color: transparent;
+}
+
+
+.form__middle {
+
+  display: flex;
+  flex: 0.7;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+}
+.form__middle input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  font-size: medium;
+  background-color: transparent;
+}
+.form__middle button{
+
+  border: none;
+  background-color: transparent;
+}
+
+
+
+
+.header__right {
+  display: flex;
+  padding-right: 20px;
+}
+
+.header__right span {
+  padding: 10px;
+  cursor: pointer;
+}
+.account-setting{
+  height: 40px;
+  width: 40px;
+object-fit: cover;
+border-radius: 50px;
+}
+/* Sidebar */
+.sidebar {
+  margin: 5px;
+  flex: 0.2;
+  max-width: 300px;
+  padding-right: 20px;
+}
+
+
+
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.sidebarOption .material-icons {
+  padding: 5px;
+}
+
+.sidebarOption h3 {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.sidebar a {
+  text-decoration: none; /* Remove underline */
+  color: your_desired_color; /* Set your desired text color */
+}
+
+.sidebarOption:hover,
+.sidebarOption:hover h3,
+.sidebarOption:hover .material-icons,
+.sidebarOption__active,
+.sidebarOption__active h3,
+.sidebarOption__active .material-icons {
+  background-color: #fcecec;
+  color: #c04b37;
+  font-weight: 800;
+}
+
+
+
+/* main body */
+.main__body {
+  display: flex;
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+/* email list */
+.QuestionList {
+  flex: 1;
+  overflow: scroll;
+}
+
+
+
+
+
+.Question-text {
+  flex-grow: 1;
+}
+
+.Questionbox {
+ padding: 4px;
+  border-radius: 20px;
+}
+
+
+
+
+
+
+ 
+.box {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 20px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.profile-image {
+  height: 50px;
+  width: 50px;
+object-fit: cover;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.profile-text {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.body p {
+  margin-bottom: 16px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.response button{
+  border: none;
+  background-color: transparent;
+padding-inline: 10px;
+}
+
+.keyword button{
+  
+  font-size: 15px;
+  border: none;
+padding-inline: 10px;
+
+}
+
+/* videos */
+
+.videos {
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
+  padding: 15px 15px;
+  border-top: 1px solid #ddd;
+  overflow-y: scroll;
+}
+
+.videos__container {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.video {
+  width: 310px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
+.video__thumbnail {
+  width: 100%;
+  height: 170px;
+}
+
+.video__thumbnail img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.author img {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.video__details {
+  display: flex;
+  margin-top: 10px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+}
+
+.title h3 {
+  color: rgb(3, 3, 3);
+  line-height: 18px;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.title a,
+span {
+  text-decoration: none;
+  color: rgb(96, 96, 96);
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: rgb(3, 3, 3);
+}
+
+
+
+/* drop down for keyword in form tag */
+.input-with-dropdown {
+  padding-inline-end:150px ;
+ position: relative;
+}
+
+.dropdown-header {
+ padding: 5px;
+ cursor: pointer;
+}
+
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: #f9f9f9;
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ z-index: 1;
+}
+
+.dropdown-content .keyword-input {
+ display: block;
+ padding: 5px;
+ margin-bottom: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+
+.dropdown-arrow {
+ margin-right: 5px;
+}
+
+
+
+ <div class="box">
+        <div class="profile-container">
+          <div class="profile-text">
+            <img src="me.jpg" alt="Profile Picture" class="profile-image">
+            <div>
+              <h3>Aditya Suhane</h3>
+              <div>
+                <span>BBA in Marketing in Bachelor of Business Administration in Marketing & Diploma in
+                  Digital...</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-container">
+            <span class="material-icons ellipsis-icon" id="ellipsisIcon" onclick="toggleDropdown()">more_vert</span>
+            <div class="dropdown-menu" id="myDropdown">
+              <a href="#"><span class="material-icons">star</span> </a>
+              <a href="#"><span class="material-icons">report</span> </a>
+              <a href="#"><span class="material-icons">edit</span> </a>
+              <a href="#"><span class="material-icons">delete</span> </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="body">
+          <p>I think both are better in their place like if you talk about jio is better than alivable in rural and most
+            of areas developed and developed areas in India . But I think Airtel offer more high speed internet in urban
+            areas</p>
+        </div>
+        <div class="keyword">
+
+
+          <button>java</button>
+          <button>java</button>
+          <button>java</button>
+          <button>java</button>
+
+        </div><br>
+        <div class="footer">
+          <form action="" class="response">
+            <button><span class="material-icons">thumb_up</span></button>
+            <button><span class="material-icons">thumb_down</span></button>
+            <button><span class="material-icons">lightbulb</span></button>
+          </form>
+        </div>
+      </div>
+      <!-- Email List Ends -->
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    *{
+  font-family:Times New Roman (serif);
+}
+.body1 {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+  .header1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    
+    /* padding: 0 15px; */
+  }
+  
+  .user-img {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  .dp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .heading-text {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  
+  .img-text span {
+    font-size: 0.8em;
+    color: #555;
+  }
+  
+  .nav-icons {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 110px;
+  }
+  
+  .nav-icons li {
+    list-style: none;
+    display: flex;
+    cursor: pointer;
+    color: #51585c;
+    margin-left: 22px;
+    font-size: 18px;
+  }
+  
+  .right-container {
+    flex: 0.7;
+    background-color: wheat;
+    height: 700px;
+  }
+  
+  .right-container .header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ 
+  .right-container .header1 .heading-text {
+    position: relative;
+    display: flex;
+ 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .right-container .header1 .heading-text h1 {
+    font-weight: 500;
+   
+    margin-left: 15px;
+  }
+  
+ 
+  
+
+  
+  .chat-container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 120px); /*60+60*/
+    padding: 2px;
+    overflow-y: auto;
+   
+  }
+ 
+  .message-box {
+    position: relative;
+    display: flex;
+    width: 100%;
+    
+  }
+  
+  .message-box p {
+    position: relative;
+    right: 0;
+    background-color: wheat;
+
+    padding: 12px;
+   
+    border-radius: 10px;
+    font-size: 0.9em;
+  }
+  
+  
+  
+  .message-box p span {
+    text-align: right;
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+    opacity: 0.5;
+    color: black;
+    background-color: wheat;
+
+  }
+  
+ 
+  
+  
+  
+  .chatbox-input {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ 
+  
+  .chatbox-input input {
+    position: relative;
+    width: 90%;
+    margin: 0 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    border: none;
+    outline: none;
+  }
+  

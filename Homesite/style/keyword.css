@@ -1,0 +1,51 @@
+.text-field {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for text field input */
+.text-field input[type="text"] {
+    padding: 10px;
+    border: none;
+  flex: 1;
+}
+#textInput {
+    border: none;
+    /* Add any additional styles you need */
+}
+/* Style for dropdown list */
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+/* Style for dropdown options */
+.dropdown-list div {
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+}
+
+/* Style for selected values */
+.selected-value {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Style for remove button */
+.remove-btn {
+    margin-left: 5px;
+    cursor: pointer;
+}

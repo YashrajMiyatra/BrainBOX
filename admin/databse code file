@@ -1,0 +1,168 @@
+-- Create the database
+USE brainbox;
+
+-- Create the user table
+CREATE TABLE IF NOT EXISTS user (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE,
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    registration_date DATETIME
+);
+
+-- Create the profile table
+CREATE TABLE IF NOT EXISTS profile (
+    profile_id INT PRIMARY KEY,
+    profile_name VARCHAR(255),
+    about_you TEXT,
+    profile_picture VARCHAR(255),
+    FOREIGN KEY (profile_id) REFERENCES user(user_id)
+);
+
+-- Create the question table
+CREATE TABLE IF NOT EXISTS question (
+    question_id INT PRIMARY KEY,
+    post_by VARCHAR(255),
+    post_id INT,
+    pic VARCHAR(255),
+    que_keyword VARCHAR(255),
+    question_txt TEXT,
+    question_date DATE,
+    click INT,
+    views_count INT,
+    FOREIGN KEY (post_id) REFERENCES user(user_id)
+);
+
+-- Create the answer table
+CREATE TABLE IF NOT EXISTS answer (
+    answer_id INT PRIMARY KEY,
+    answer_to_id INT,
+    post_by VARCHAR(255),
+    post_id INT,
+    pic VARCHAR(255),
+    answer_txt TEXT,
+    answer_date DATE,
+    likes_count INT,
+    dislikes_count INT,
+    FOREIGN KEY (answer_to_id) REFERENCES question(question_id),
+    FOREIGN KEY (post_id) REFERENCES user(user_id)
+);
+
+-- Create the template table
+CREATE TABLE IF NOT EXISTS template (
+    template_id INT PRIMARY KEY,
+    template_head VARCHAR(255),
+    template_txt TEXT,
+    post_id INT,
+    post_by VARCHAR(255),
+    pic VARCHAR(255),
+    template_1 VARCHAR(255),
+    template_2 VARCHAR(255),
+    template_3 VARCHAR(255),
+    template_4 VARCHAR(255),
+    template_5 VARCHAR(255),
+    FOREIGN KEY (post_id) REFERENCES user(user_id)
+);
+
+-- Create the search table
+CREATE TABLE IF NOT EXISTS search (
+    search_id INT PRIMARY KEY,
+    search_date DATE,
+    search_query_txt TEXT,
+    search_by INT,
+    keyword TEXT,
+    FOREIGN KEY (search_by) REFERENCES user(user_id)
+);
+
+-- Create the user_actions table
+CREATE TABLE IF NOT EXISTS user_actions (
+    action_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    action_type VARCHAR(50) NOT NULL,
+    post_que_keyword VARCHAR(255),
+    content_click INT,
+    search_term VARCHAR(255) DEFAULT NULL,
+    search_keyword VARCHAR(255),
+    action_date DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+-- Create the keyword table
+CREATE TABLE IF NOT EXISTS keyword (
+    date DATE,
+    keyword_from VARCHAR(255),
+    keyword VARCHAR(255)
+);
+
+-- Create the discussion table
+CREATE TABLE IF NOT EXISTS discussion (
+    discussion_id INT PRIMARY KEY,
+    discussion_type VARCHAR(255),
+    discussion_name VARCHAR(255),
+    discussion_admin INT,
+    discussion_admin_id INT,
+    discussion_txt TEXT,
+    discussion_date DATETIME,
+    FOREIGN KEY (discussion_admin_id) REFERENCES user(user_id)
+);
+
+-- Create the discussion_participation table
+CREATE TABLE IF NOT EXISTS discussion_participation (
+    participation_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    discussion_id INT,
+    participation_type VARCHAR(50) NOT NULL,
+    participation_date DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (discussion_id) REFERENCES discussion(discussion_id)
+);
+
+-- Create the reported_questions table
+CREATE TABLE IF NOT EXISTS reported_questions (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    reported_by_user_id INT,
+    question_id INT,
+    report_date DATETIME,
+    FOREIGN KEY (reported_by_user_id) REFERENCES user(user_id),
+    FOREIGN KEY (question_id) REFERENCES question(question_id)
+);
+
+-- Create the question_likes table
+CREATE TABLE IF NOT EXISTS question_likes (
+    like_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    question_id INT,
+    like_type ENUM('like', 'dislike') NOT NULL,
+    like_date DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (question_id) REFERENCES question(question_id)
+);
+
+-- Create the keyword_statistics table
+CREATE TABLE IF NOT EXISTS keyword_statistics (
+    stat_id INT PRIMARY KEY AUTO_INCREMENT,
+    keyword VARCHAR(255),
+    frequency INT,
+    stat_date DATE
+);
+
+-- Create the discussion_statistics table
+CREATE TABLE IF NOT EXISTS discussion_statistics (
+    stat_id INT PRIMARY KEY AUTO_INCREMENT,
+    discussion_id INT,
+    participants_count INT,
+    views_count INT,
+    stat_date DATE,
+    FOREIGN KEY (discussion_id) REFERENCES discussion(discussion_id)
+);
+
+-- Create the user_responses table
+CREATE TABLE IF NOT EXISTS user_responses (
+    response_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    question_id INT,
+    response_text TEXT,
+    response_date DATETIME,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (question_id) REFERENCES question(question_id)
+);

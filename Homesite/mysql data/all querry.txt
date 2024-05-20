@@ -1,0 +1,80 @@
+
+CREATE TABLE user (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    about_you TEXT,
+    interest VARCHAR(255),
+    pic VARCHAR(255),
+    registration_date date
+);
+CREATE TABLE question (
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    question_txt TEXT NOT NULL,
+    que_keyword VARCHAR(255),
+    que_snapshot_img VARCHAR(255),
+    question_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE responses (
+    response_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    question_id INT,
+    FOREIGN KEY (question_id) REFERENCES question(question_id),
+    response_txt TEXT NOT NULL,
+    response_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    click_count INT DEFAULT 0,
+    like_count INT DEFAULT 0,
+    dislike_count INT DEFAULT 0
+);
+ALTER TABLE question
+ADD COLUMN click_count INT DEFAULT 0,
+ADD COLUMN like_count INT DEFAULT 0,
+ADD COLUMN dislike_count INT DEFAULT 0;
+
+CREATE TABLE profile (
+    profile_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    company_name VARCHAR(255),
+    contact VARCHAR(20),
+    experience INT,
+    hobby VARCHAR(255),
+    coding_lang VARCHAR(255),
+    certificates VARCHAR(255)
+);
+
+CREATE TABLE starred (
+    starred_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    question_id INT,
+    FOREIGN KEY (question_id) REFERENCES question(question_id),
+    star_type BOOLEAN
+);
+
+CREATE TABLE user_action (
+    action_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    que_keyword VARCHAR(255),
+    search_keyword VARCHAR(255),
+    starred_keyword VARCHAR(255),
+    like_keyword VARCHAR(255)
+);
+CREATE TABLE question_likes (
+    question_like_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    question_id INT,
+    FOREIGN KEY (question_id) REFERENCES question(question_id),
+    like_type BOOLEAN,
+    like_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ALTER TABLE starred
+ADD COLUMN star_date  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ALTER TABLE user_action
+ADD COLUMN user_action_date  TIMESTAMP DEFAULT CURRENT_TIMESTAMP

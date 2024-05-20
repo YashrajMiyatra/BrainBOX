@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css\cont.css">
+
+    <title>brain box</title>
+    <style>
+      
+       /* Style for the container holding the added keywords */
+
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar background">
+        <ul class="nav-list">
+            <div class="logo"><img src="company.png" alt="logo"></div>
+            <li><a href="#home"> HOME </a></li>
+            <li><a href="#services"> SERVICES </a></li>
+            <li><a href="#contact"> CONTACT </a></li>
+        </ul>
+
+    </nav>
+    <section class="background firstsection" id="home">
+    
+        <div class="box-main">
+            <div class="firsthalf">
+                <pre class="text-big">         The BrainBox</pre>
+                <p class="text-small">BrainBox is a platform to learn and satisfy your curiosity. Ask questions and get community-driven answers. It's helpful, fair, and safe. Join us for free.</p>
+            </div>
+            <div class="join-us">
+                <button id="loginButton">login</button>
+                <button  id="registrationButton">registration  </button>
+
+            </div>
+            
+        </div>
+    
+    </section>
+
+    <!--hero section-->
+<section class="log" id="login">
+    <div class="container">
+        <div class="row">
+          <style></style>
+                <div class="hero__tab">
+                    <div class="tab-content">
+                        <div class="modal" id="loginModal" >
+                            <div class="hero__tab__form">
+                                <h2>Let's go 
+                                </h2>
+                               
+                                <form action="insert.php" method="Post">
+                                    <div class="select-list">
+                                        <div class="select-list-item">
+                                            <p>Enter your email</p>
+                                           <input type="text" name="email" placeholder="Enter your name">
+                                        </div>
+                                       
+                                       
+                                        <div class="select-list-item">
+                                            <p>Password</p>
+                                           <input type="password" name="password" placeholder="Enter your Paswword">
+                                        </div>
+                                    </div>
+                                       
+                                    </div>
+                                    <button type="submit" class="login-b" name="login">login</button>
+                                </form>
+                                <span class="close" id="closeModal">&times;</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>   
+                <div class="modal" id="registrationModal" >
+                <div class="row registration-row">
+                            <div class="hero__tab__form">
+                                <h2>Let's go join Us
+                                </h2>
+                                <form enctype="multipart/form-data" method="post" action="insert.php">
+                                    <div class="select-list">
+                                        <div class="select-list-item">
+                                            <p>Enter username </p>
+                                            <input type="text" name="username" id="" placeholder="Enter your name">
+                                        </div>
+                                        <div class="select-list-item">
+                                            <p>Enter Your Email</p>
+                                           <input type="email" name="email" id="" placeholder="Enter Your Email">
+                                        </div>
+                                        <div class="select-list-item">
+                                            <p>Create password</p>
+                                            <input type="password" name="password" id="" placeholder="create password">
+                                        </div>
+
+
+
+                                        <div class="file-input-container">
+                                            <p>Upload image</p>
+                                            <input type="file" id="photo-upload" class="file-input" name="pic" accept="image/*">
+                                            <label for="file-input" class="custom-file-label">Choose File</label>
+                                        </div>
+
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                              const fileInput = document.getElementById("file-input");
+                                              const customFileLabel = document.querySelector(".custom-file-label");
+                                          
+                                              fileInput.addEventListener("change", function() {
+                                                if (fileInput.files.length > 0) {
+                                                  customFileLabel.textContent = fileInput.files[0].name;
+                                                } else {
+                                                  customFileLabel.textContent = "Choose File";
+                                                }
+                                              });
+                                            });
+                                          </script>
+
+
+                                        <div id="selectedValuesContainer"></div>
+                                        <input type="hidden" id="selectedValuesInput" name="keywords" value=""   >
+                                     
+                                        <div class="text-field">
+                                            <input type="text" id="textInput" oninput="filterOptions()" placeholder="Type and select keyword" autocomplete="off">
+                                            <div id="dropdownList" class="dropdown-list"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="site-btn" name="registration">create account</button>
+                                </form>
+                                <span class="close" id="closeRegistrationModal">&times;</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <div class="paras">
+        <h2 class="sectionTag text-big">The Power of Asking Questions:</h2>
+        <p class="sectionSubTag text-small">In this blog post we explore the importance of questioning in the learning process and how BrainBox plays a key role in facilitating this. BrainBox provides an easy platform for users to post questions and get answers from a panel of knowledgeable people, thereby enhancing their learning journey.</p>
+    </div>
+    <div class="thumbnail">
+        <img src="img/first.jpg" alt="laptop image" class="imgfluid">
+    </div>
+</section>
+
+<section class="section section-left">
+    <div class="paras">
+        <h2 class="sectionTag text-big">Exploring the Features of BrainBox:</h2>
+        <p class="sectionSubTag text-small">BrainBox has a simple layout. You can e­asily post questions or search for answers. It le­ts you vote on content quality. This helps ke­ep information relevant. Many subje­cts are available on Brain Box. This makes it use­ful for many people. Users share­ positive experie­nces with the platform. Their storie­s confirm it works as intended.</p>
+    </div>
+    <div class="thumbnail">
+        <img src="img/second.jpg" alt="laptop image" class="imgfluid">
+    </div>
+</section>
+
+<section class="section">
+    <div class="paras">
+        <h2 class="sectionTag text-big">The Story Behind BrainBox:</h2>
+        <p class="sectionSubTag text-small">BrainBox began with a dre­am: building a place where pe­ople could openly share what the­y know, learning from each other. Founde­d on fostering curiosity, it faced many hurdles. Ye­t it grew into a thriving community of minds Discover BrainBox's inspiring e­volution, overcoming obstacles to create­ a space celebrating knowle­dge exchange and collaboration.</p>
+    </div>
+    <div class="thumbnail">
+        <img src="img/third.jpg" alt="laptop image" class="imgfluid">
+    </div>
+</section>
+
+
+
+
+    <section class="contact" id="contact">
+        <h2 class="text-center">contact us</h2>
+        <div class="form">
+            <input class="form-input" type="text" name="name" id="name" placeholder="ENTER YOUR NAME">
+            <input class="form-input" type="phone" name="phone" id="phone" placeholder="ENTER YOUR PHONE">
+            <input class="form-input" type="email" name="email" id="email" placeholder="ENTER YOUR EMAIL">
+            <textarea class="form-input" name="text" id="text" cols="30" rows="10" placeholder="elobrate your consern"></textarea>
+            <button class="submit">Submit</button>
+        </div>
+    </section>
+    <footer class="background">
+        <p class="text-footer">
+        copyright &copy;2024 www.BrainBox.com - all rights reserved.
+    </p>
+    </footer>
+    <script>
+    // Array to store selected values
+var selectedValues = [];
+
+// Options for the dropdown
+var options = [
+    "Java", "Python", "JavaScript", "C++", "Ruby", "Swift", "Go", "HTML", "CSS", "PHP", "TypeScript",
+    "computer-science-education",  // Interest in computer science education
+    "programming-tools",           // Interest in various programming tools
+    "coding-practices",            // Interest in software engineering best practices
+    "code-review",                 // Interest in reviewing and improving code quality
+    "programming-challenges",      // Interest in solving algorithmic problems
+    "web-development",             // Interest in front-end and back-end web development
+    "mobile-app-development",      // Interest in developing mobile applications
+    "open-source",                 // Interest in contributing to open source projects
+    "algorithmic-problem-solving", // Interest in solving algorithmic challenges
+    "full-stack-development",      // Interest in both front-end and back-end development
+    "programming-education",       // Interest in teaching and learning programming
+    "tech-community-involvement",  // Interest in engaging with the tech community
+    "football",                    // Interest in football
+    "teaching",                    // Interest in teaching
+    "travel",                      // Interest in travel
+    "music",                       // Interest in music
+    "art",                         // Interest in art
+    "cooking",                     // Interest in cooking
+    "photography",                 // Interest in photography
+    "hiking",                      // Interest in hiking
+    "gardening",                   // Interest in gardening
+    "yoga",                        // Interest in yoga
+    "reading",                     // Interest in reading
+    "film",                        // Interest in film
+    "board-games",                 // Interest in playing board games
+    "cycling",                     // Interest in cycling
+    "astronomy",                   // Interest in astronomy
+    "fashion",                     // Interest in fashion
+    "DIY-projects"                 // Interest in do-it-yourself projects
+    // Add more non-programming interests as needed
+];
+
+
+function filterOptions() {
+    var input = document.getElementById('textInput').value.toLowerCase();
+    var dropdownList = document.getElementById('dropdownList');
+
+    dropdownList.innerHTML = '';
+
+    for (var i = 0; i < options.length; i++) {
+        var value = options[i].toLowerCase();
+        if (value.includes(input)) {
+            dropdownList.innerHTML += '<div onclick="selectOption(\'' + options[i] + '\')">' + options[i] + '</div>';
+        }
+    }
+
+    if (input !== '' && !options.some(option => option.toLowerCase() === input)) {
+        dropdownList.innerHTML += '<div onclick="selectOption(\'' + input + '\')">' + input + '</div>';
+    }
+
+    if (dropdownList.innerHTML !== '') {
+        dropdownList.style.display = 'block';
+    } else {
+        dropdownList.style.display = 'none';
+    }
+}
+
+function selectOption(option) {
+    if (!selectedValues.includes(option)) {
+        selectedValues.push(option);
+        updateSelectedValues();
+        document.getElementById('textInput').value = '';
+        document.getElementById('dropdownList').style.display = 'none';
+    }
+}
+
+function removeSelectedValue(value) {
+    selectedValues = selectedValues.filter(item => item !== value);
+    updateSelectedValues();
+}
+
+function updateSelectedValues() {
+    var selectedValuesContainer = document.getElementById('selectedValuesContainer');
+    selectedValuesContainer.innerHTML = '';
+
+    selectedValues.forEach(function (value) {
+        var selectedValueElement = document.createElement('span');
+        selectedValueElement.classList.add('selected-value');
+        selectedValueElement.textContent = value;
+
+        var removeBtn = document.createElement('span');
+        removeBtn.classList.add('remove-btn');
+        removeBtn.textContent = '✖';
+        removeBtn.onclick = function () {
+            removeSelectedValue(value);
+        };
+
+        selectedValueElement.appendChild(removeBtn);
+        selectedValuesContainer.appendChild(selectedValueElement);
+    });
+
+    updateHiddenInput();
+}
+
+function updateHiddenInput() {
+    var selectedValuesInput = document.getElementById('selectedValuesInput');
+    selectedValuesInput.value = JSON.stringify(selectedValues);
+}</script>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+  document.getElementById('loginModal').style.display = 'block';
+});
+
+document.getElementById('closeModal').addEventListener('click', function() {
+  document.getElementById('loginModal').style.display = 'none';
+});
+
+document.getElementById('registrationButton').addEventListener('click', function() {
+  document.getElementById('registrationModal').style.display = 'block';
+});
+
+document.getElementById('closeRegistrationModal').addEventListener('click', function() {
+  document.getElementById('registrationModal').style.display = 'none';
+});
+
+    </script>
+    <script src="js/resp.js"></script>
+</body>
+</html>
